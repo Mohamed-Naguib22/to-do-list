@@ -5,7 +5,7 @@ import { Todo } from '../../domain/entities/todo.entity';
 
 const STORAGE_KEY = 'todo-app:todos';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TodoLocalStorageRepository extends TodoRepository {
   private storage = inject(StorageService);
 

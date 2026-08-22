@@ -4,16 +4,8 @@ import { TodoFilterComponent } from '../components/app-todo-filter.component';
 import { TodoListComponent } from '../components/app-todo-list.component';
 import { ThemeToggleComponent } from '../../../../shared/components/toggle/app-theme-toggle.component';
 import { TranslatePipe } from '../../../../shared/pipes/translate.pipe';
-import { TodoRepository } from '../../domain/repositories/todo.repository';
 import { TodoStore } from '../state/todo.store';
-import { TodoLocalStorageRepository } from '../../data/repositories/todo-local-storage.repository';
 import { LangToggleComponent } from '../../../../shared/components/toggle/app-lang-toggle.component';
-import { ListTodosUseCase } from '../../domain/use-cases/list-todos.use-case';
-import { CreateTodoUseCase } from '../../domain/use-cases/create-todo.usecase';
-import { UpdateTodoUseCase } from '../../domain/use-cases/update-todo.usecase';
-import { ToggleTodoUseCase } from '../../domain/use-cases/toggle-todo.usecase';
-import { DeleteTodoUseCase } from '../../domain/use-cases/delete-todo.usecase';
-import { ClearCompletedUseCase } from '../../domain/use-cases/clear-completed.usecase';
 
 @Component({
   selector: 'app-todo-page',
@@ -27,13 +19,6 @@ import { ClearCompletedUseCase } from '../../domain/use-cases/clear-completed.us
     TranslatePipe,
   ],
   providers: [
-    { provide: TodoRepository, useClass: TodoLocalStorageRepository },
-    ListTodosUseCase,
-    CreateTodoUseCase,
-    UpdateTodoUseCase,
-    ToggleTodoUseCase,
-    DeleteTodoUseCase,
-    ClearCompletedUseCase,
     TodoStore,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
