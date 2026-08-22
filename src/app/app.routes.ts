@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
+import { TODO_ROUTES } from './features/todo/presentation/routes/todo.routes';
 
 export const routes: Routes = [
-  {
-    path: '',
-    loadComponent: () => import('./features/todo/presentation/pages/todo.page').then(m => m.TodoPageComponent),
-  },
+  ...TODO_ROUTES,
 ];

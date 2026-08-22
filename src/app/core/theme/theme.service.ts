@@ -1,10 +1,9 @@
 import { Injectable, PLATFORM_ID, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { StorageService } from '../infrastructure/storage.service';
+import { StorageKeys } from '../utils/storage-keys';
 
 export type Theme = 'light' | 'dark';
-
-const STORAGE_KEY = 'todo-app:theme';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
@@ -17,14 +16,14 @@ export class ThemeService {
 
   constructor(private storage: StorageService) {
     if (this.isBrowser) {
-      this._theme.set(this.storage.get<Theme>(STORAGE_KEY, this.prefersDark() ? 'dark' : 'light'));
+      this._theme.set(this.storage.get<Theme>(StorageKeys.APP_THEME, this.prefersDark() ? 'dark' : 'light'));
     }
 
     effect(() => {
       const theme = this._theme();
       if (!this.isBrowser) return;
       document.documentElement.classList.toggle('dark', theme === 'dark');
-      this.storage.set(STORAGE_KEY, theme);
+      this.storage.set(StorageKeys.APP_THEME, theme);
     });
   }
 

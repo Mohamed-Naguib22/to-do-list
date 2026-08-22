@@ -3,8 +3,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { DICTIONARIES } from './i18n.dictionaries';
 import { Lang } from './i18n.model';
 import { StorageService } from '../infrastructure/storage.service';
+import { StorageKeys } from '../utils/storage-keys';
 
-const STORAGE_KEY = 'todo-app:lang';
 const RTL_LANGS: Lang[] = ['ar'];
 
 @Injectable({ providedIn: 'root' })
@@ -18,7 +18,7 @@ export class I18nService {
 
   constructor(private storage: StorageService) {
     if (this.isBrowser) {
-      this._lang.set(this.storage.get<Lang>(STORAGE_KEY, 'en'));
+      this._lang.set(this.storage.get<Lang>(StorageKeys.APP_LANG, 'en'));
     }
 
     effect(() => {
@@ -26,7 +26,7 @@ export class I18nService {
       if (!this.isBrowser) return;
       document.documentElement.lang = lang;
       document.documentElement.dir = this.dir();
-      this.storage.set(STORAGE_KEY, lang);
+      this.storage.set(StorageKeys.APP_LANG, lang);
     });
   }
 
@@ -38,7 +38,6 @@ export class I18nService {
     this._lang.set(this._lang() === 'en' ? 'ar' : 'en');
   }
 
-  /** Translate a key, with optional {placeholder} interpolation. */
   t(key: string, params?: Record<string, string | number>): string {
     const dict = DICTIONARIES[this._lang()];
     let text = dict[key] ?? key;
