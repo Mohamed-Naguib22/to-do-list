@@ -2,7 +2,7 @@ import { Injectable, PLATFORM_ID, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DICTIONARIES } from './i18n.dictionaries';
 import { Lang } from './i18n.model';
-import { StorageService } from '../infrastructure/storage.service';
+import { StorageService } from '../infrastructure/storage/storage.service';
 import { StorageKeys } from '../utils/storage-keys';
 
 const RTL_LANGS: Lang[] = ['ar'];

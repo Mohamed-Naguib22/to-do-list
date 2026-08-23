@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { StorageService } from '../../../../core/infrastructure/storage.service';
+import { StorageService } from '../../../../core/infrastructure/storage/storage.service';
 import { TodoRepository } from '../../domain/repositories/todo.repository';
 import { Todo } from '../../domain/entities/todo.entity';
 import { StorageKeys } from '../../../../core/utils/storage-keys';

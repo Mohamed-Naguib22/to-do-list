@@ -1,6 +1,6 @@
 import { Injectable, PLATFORM_ID, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { StorageService } from '../infrastructure/storage.service';
+import { StorageService } from '../infrastructure/storage/storage.service';
 import { StorageKeys } from '../utils/storage-keys';
 
 export type Theme = 'light' | 'dark';
